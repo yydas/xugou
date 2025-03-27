@@ -46,8 +46,22 @@ const MonitorCard = ({ monitor }: MonitorCardProps) => {
   // 获取当前监控的状态
   const currentStatus = monitor.status || 'pending';
 
+  // 处理卡片点击
+  const handleCardClick = () => {
+    if (monitor.url) {
+      window.open(monitor.url, '_blank');
+    }
+  };
+
   return (
-    <Card className="monitor-card">
+    <Card 
+      className="monitor-card clickable" 
+      onClick={handleCardClick}
+      style={{ 
+        cursor: monitor.url ? 'pointer' : 'default',
+        transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out'
+      }}
+    >
       <Flex justify="between" align="start" p="4" gap="2" direction="column">
         <Flex justify="between" align="center" style={{ width: '100%' }}>
           <Flex align="center" gap="2">
